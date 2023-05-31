@@ -28,7 +28,11 @@ export class RegisterComponent {
   confirm_password = new FormControl('', [
     Validators.required,
   ])
-  phoneNumber = new FormControl('')
+  phoneNumber = new FormControl('', [
+    Validators.required,
+    Validators.minLength(13),
+    Validators.maxLength(13)
+  ])
 
 
   registerForm = new FormGroup({
@@ -39,5 +43,15 @@ export class RegisterComponent {
     confirm_password: this.confirm_password,
     phonenumber: this.phoneNumber
   })
+  alertMsg = "Please wait, your account is being created."
+  showAlert = false
+  alertColor = 'blue'
 
+  register() {
+    this.alertMsg = "Please wait, your account is being created."
+    this.showAlert = true
+    this.alertColor = 'blue'
+  }
 }
+
+
