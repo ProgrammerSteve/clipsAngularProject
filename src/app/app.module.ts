@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { VideoModule } from './video/video.module';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AngularFireModule } from "@angular/fire/compat";
@@ -11,13 +12,15 @@ import { AppComponent } from './app.component';
 import { UserModule } from './user/user.module';
 import { NavComponent } from './nav/nav.component';
 import { HomeComponent } from './home/home.component';
+import { AboutComponent } from './about/about.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     NavComponent,
-    HomeComponent
+    HomeComponent,
+    AboutComponent
   ],
   imports: [
     BrowserModule,
@@ -25,7 +28,8 @@ import { HomeComponent } from './home/home.component';
     UserModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule,
-    AngularFirestoreModule
+    AngularFirestoreModule,
+    VideoModule
   ],
   providers: [],
   bootstrap: [AppComponent]
