@@ -10,9 +10,7 @@ interface IModal {
 })
 export class ModalService {
   private modals: IModal[] = []
-
   constructor() { }
-
   isModalOpen(id: string) {
     return !!this.modals.find((element) => element.id === id)?.visible
   }
@@ -22,14 +20,12 @@ export class ModalService {
       modal.visible = !modal.visible
     }
   }
-
   register(id: string) {
     this.modals.push({
       id, visible: false
     })
     console.log(this.modals)
   }
-
   unregister(id: string) {
     this.modals = this.modals.filter(element => element.id !== id)
   }
