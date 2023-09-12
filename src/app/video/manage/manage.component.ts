@@ -1,19 +1,38 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-//import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router, Params } from '@angular/router';
 
 @Component({
   selector: 'app-manage',
   templateUrl: './manage.component.html',
   styleUrls: ['./manage.component.css']
 })
-export class ManageComponent {
+export class ManageComponent implements OnInit {
+
+
+  videoOrder = "1"
+  //1 = decending
+  //2 = ascending
   constructor(
-    //private route: ActivatedRoute
+    private router: Router,
+    private route: ActivatedRoute
   ) { }
 
-  // ngOnInit(): void {
-  //   this.route.data.subscribe(console.log)
-  // }
+
+  sort(event: Event) {
+    const { value } = (event.target as HTMLSelectElement)
+    this.router.navigate([], {
+      relativeTo: this.route,
+      queryParams: {
+        sort: value
+      }
+    })
+  }
+
+  ngOnInit(): void {
+    this.route.data.subscribe((params: Params) => {
+      this.videoOrder = params['sort'] == '2' ? params['sort'] : 1
+    })
+  }
 
 
 
