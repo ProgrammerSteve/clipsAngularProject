@@ -10,10 +10,7 @@ import IClip from 'src/app/models/clip.model';
 })
 export class EditComponent implements OnInit, OnDestroy, OnChanges {
   constructor(private modal: ModalService, private clipService: ClipService) { }
-
   @Output() update = new EventEmitter()
-
-
   @Input() activeClip: IClip | null = null
   showAlert = false
   inSubmission = false
@@ -40,13 +37,7 @@ export class EditComponent implements OnInit, OnDestroy, OnChanges {
     this.inSubmission = false
     this.alertColor = 'green'
     this.alertMsg = "Success!"
-
-
-
-
-
   }
-
 
   clipID = new FormControl('', {
     nonNullable: true
@@ -64,8 +55,6 @@ export class EditComponent implements OnInit, OnDestroy, OnChanges {
     id: this.clipID
   })
 
-
-
   ngOnInit(): void {
     this.modal.register('editClip')
   }
@@ -82,5 +71,4 @@ export class EditComponent implements OnInit, OnDestroy, OnChanges {
     this.clipID.setValue(this.activeClip.docID as string)
     this.title.setValue(this.activeClip.title)
   }
-
 }
