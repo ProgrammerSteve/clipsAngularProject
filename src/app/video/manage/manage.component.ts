@@ -2,7 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Router, Params } from '@angular/router';
 import { ClipService } from 'src/app/services/clip.service';
 import IClip from 'src/app/models/clip.model';
-
+import { ModalService } from 'src/app/services/modal.service';
 @Component({
   selector: 'app-manage',
   templateUrl: './manage.component.html',
@@ -13,13 +13,15 @@ export class ManageComponent implements OnInit {
 
   videoOrder = "1"
   clips: IClip[] = []
+  activeClip: IClip | null = null
 
   //1 = decending
   //2 = ascending
   constructor(
     private router: Router,
     private route: ActivatedRoute,
-    private clipService: ClipService
+    private clipService: ClipService,
+    private modal: ModalService
   ) { }
 
 
@@ -49,6 +51,21 @@ export class ManageComponent implements OnInit {
     })
   }
 
+  openModal($event: Event, clip: IClip) {
+    $event.preventDefault()
+    this.activeClip = clip
+    this.modal.toggleModal("editClip")
+  }
+
+
+
+  update($event: IClip) {
+    this.clips.forEach((element, index) => {
+      if (element.docID == $event.docID) {
+        this.clips[index].title = $event.title
+      }
+    })
+  }
 
 
 }
