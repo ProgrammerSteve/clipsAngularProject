@@ -34,6 +34,12 @@
           class="w-full px-10 py-40 rounded text-center cursor-pointer border border-dashed border-gray-400 transition duration-500 hover:text-white hover:bg-indigo-400 hover:border-indigo-400 hover:border-solid text-xl"
         >
           <h5>Drop your file here (mp4 only!)</h5>
+
+          <img
+            *ngIf="ffmpegService.isRunning"
+            src="assets/autorenew.svg"
+            class="w-28 h-28 mx-auto fill-white text-white bg-blend-overlay animate-spin-slow"
+          />
         </div>
         <input type="file" class="mt-4" (change)="storeFile($event)" />
       </ng-container>
@@ -49,14 +55,16 @@
           <!-- Screenshots -->
           <h2 class="mb-4 text-xl">Select a Thumbnail</h2>
           <div class="grid grid-cols-1 lg:grid-cols-3 gap-4">
-            <div class="border-8 cursor-pointer border-green-400">
-              <img src="assets/img/1.jpg" />
-            </div>
-            <div class="border-8 cursor-pointer border-transparent">
-              <img src="assets/img/2.jpg" />
-            </div>
-            <div class="border-8 cursor-pointer border-transparent">
-              <img src="assets/img/3.jpg" />
+            <div
+              *ngFor="let screenshot of screenshots"
+              class="border-8 cursor-pointer"
+              [ngClass]="{
+                'border-green-400': selectedScreenshot === screenshot,
+                'border-transparent': selectedScreenshot !== screenshot
+              }"
+              (click)="selectedScreenshot = screenshot"
+            >
+              <img [src]="screenshot | safeURL" />
             </div>
           </div>
 
