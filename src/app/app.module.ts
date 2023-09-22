@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { VideoModule } from './video/video.module';
+//lazy loaded
+// import { VideoModule } from './video/video.module';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AngularFireStorageModule } from '@angular/fire/compat/storage'
@@ -16,6 +17,8 @@ import { HomeComponent } from './home/home.component';
 import { AboutComponent } from './about/about.component';
 import { ClipComponent } from './clip/clip.component';
 import { NotFoundComponent } from './not-found/not-found.component';
+import { ClipsListComponent } from './clips-list/clips-list.component';
+import { FbTimestampPipe } from './pipe/fb-timestamp.pipe';
 
 
 @NgModule({
@@ -25,7 +28,9 @@ import { NotFoundComponent } from './not-found/not-found.component';
     HomeComponent,
     AboutComponent,
     ClipComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    ClipsListComponent,
+    FbTimestampPipe
   ],
   imports: [
     BrowserModule,
@@ -34,7 +39,7 @@ import { NotFoundComponent } from './not-found/not-found.component';
     AngularFireAuthModule,
     AngularFirestoreModule,
     AngularFireStorageModule,
-    VideoModule,
+    // VideoModule,
     AppRoutingModule,
   ],
   providers: [],
